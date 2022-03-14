@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <h3>Your Gold: {{ session['total'] }}</h3>
+    <div class="form-container">
+        <form action="/process_money" method="post">
+            <h4>Farm</h4>
+            <p>(earns 10-20 golds)</p>
+            <input type="hidden" name="input" value="farm">
+            <button type="submit" class="btn btn-success">Find Gold!</button>
+        </form>
+        <form action="/process_money" method="post">
+            <h4>Cave</h4>
+            <p>(earns 5-10 golds)</p>
+            <input type="hidden" name="input" value="cave">
+            <button type="submit" class="btn btn-success">Find Gold!</button>
+        </form>
+        <form action="/process_money" method="post">
+            <h4>House</h4>
+            <p>(earns 2-5 golds)</p>
+            <input type="hidden" name="input" value="house">
+            <button type="submit" class="btn btn-success">Find Gold!</button>
+        </form>
+        <form action="/process_money" method="post">
+            <h4>Casino</h4>
+            <p>(earns/takes 0-50 golds)</p>
+            <input type="hidden" name="input" value="casino">
+            <button type="submit" class="btn btn-success">Find Gold!</button>
+        </form>
+    </div>
+    
+    <div class="reset-btn">
+        <form action="/process_money" method="post">
+            <h4>Reset</h4>
+            <input type="hidden" name="input" value="reset">
+            <button type="submit" class="btn btn-success">Reset</button>
+        </form>
+    </div>
+
+
+    <h4>Activities:</h4>
+    <div class="logs" id="myDiv">
+        {{ session['message']|safe}}
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
